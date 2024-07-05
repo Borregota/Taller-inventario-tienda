@@ -12,7 +12,7 @@ void ingresarProductos(char NProducto[][30], float cantidadPrecio[][2], int tama
         printf("Error: No hay suficiente espacio en la matriz para almacenar %d productos.\n", cantidad);
         return;
     }
-    for (i = productos_ingresados; i < productos_ingresados + cantidad; i++) {
+    for (i = productos_ingresados; i < productos_ingresados + cantidad; i++) {  
         printf("Ingrese el nombre del producto %d: ", i+1);
         fflush(stdin);
         scanf("%s", NProducto[i]);
@@ -35,7 +35,7 @@ int* buscarProductoXNom(char NProducto[][30], char productoABus[], int tamanomat
     static int indices[30];
     int cantidad = 0;
     for (int i = 0; i < tamanomatriz; i++) {
-        if (strcmp(NProducto[i], productoABus) == 0) {
+        if (strcmp(NProducto[i], productoABus) == 0)  { // El 0 nos da por lo que las dos cadenas son iguales, valor negativo a primera cadena es menor, positivo la primera es mayor
             indices[cantidad] = i;
             cantidad++;
         }
@@ -46,12 +46,18 @@ int* buscarProductoXNom(char NProducto[][30], char productoABus[], int tamanomat
 
 void imprimirProductoXIndex(char productoABus[], char NProducto[][30], float cantidadPrecio[][2], int* indices) {
     int i = 0;
+
     while (indices[i] != -1) {
         printf("Index: %d\n", indices[i]);
         printf("N.producto\tCantidad\tPrecio\n");
         printf("%s\t\t%.2f\t\t%.2f\n", NProducto[indices[i]], cantidadPrecio[indices[i]][0], cantidadPrecio[indices[i]][1]);
         i++;
     }
+    if (indices[i] = -1)
+    {
+        printf ("No se ingreso ningun producto aun.");
+    }
+    
 }
 
 void editarProducto(char NProducto[][30], float cantidadPrecio[][2], int tamanomatriz) {
@@ -81,7 +87,6 @@ void editarProducto(char NProducto[][30], float cantidadPrecio[][2], int tamanom
         printf("El producto ingresado no existe.\n");
     }
 }
-
 void eliminarProducto(char NProducto[][30], float cantidadPrecio[][2], int tamanoMatriz) {
     char productoABus[30];
     printf("Ingrese el nombre del producto que desea eliminar: ");
@@ -94,7 +99,7 @@ void eliminarProducto(char NProducto[][30], float cantidadPrecio[][2], int taman
             i++;
         }
         int opcion;
-        printf("Seleccione el número del producto que desea eliminar: ");
+        printf("Seleccione el numero del producto que desea eliminar: ");
         scanf("%d", &opcion);
         int index = indices[opcion-1];
         for (int i = index; i < tamanoMatriz - 1; i++) {
