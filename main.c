@@ -7,8 +7,7 @@ int main(int argc, char const *argv[])
 {
     char productoABus[30];
     int opcion1, opcion2;
-    int tam = tamanomatriz; // crear variable para almacenar tamaño de la matriz
-
+    int tam = tamanomatriz; 
     char Nproducto[tam][30];
     float cantidadPrecio[tam][2];
 
